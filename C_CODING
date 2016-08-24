@@ -1,0 +1,41 @@
+C CODING STYLE
+
+It is just coding style for the c code not a standard.
+It's good for author to keep code consistent in the way.
+
+* Function names are all lower-case separated by underscores.
+
+* Function which takes no arguments are declared f(void) not f().
+
+* In a function definition, the function name starts a new line.
+  For example,
+
+  void
+  foo(void)
+  {
+    ...
+  }
+
+  It's easy to use ag '^foo' or grep -n '^foo' ./*.c to find the
+  definition of foo.
+
+* Multi-word names are lower-case separated by underscores.
+
+* Preprocessor macros are always UPPERCASE.
+
+* Comments in imported code are usually C /* ... */ comments.
+  Comments in new code are CPP style //.
+
+* Pointer types have spaces.
+  For example, should use (uint16_t *) not (uint16_t*).
+
+* No space after the name of a function in a call.
+  For example, should use printf("hello") not 'printf ("hello").
+
+* One space after keywords 'if', 'for', 'while', 'switch'.
+  For example, should use if (x) not if(x).
+
+* Curly brace on same line for keywords 'if', for', 'while', 'switch'.
+
+* Space before curly brace.
+  For example, should use if (x) { not if (x){.
