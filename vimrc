@@ -86,3 +86,16 @@ nnoremap <Leader>d :nohlsearch<CR>
 
 " ,, to switch to last edit buffer
 nnoremap <Leader><Leader> <C-^>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" difference settings for difference filetypes
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has("autocmd")
+
+  " setting for c type files
+  autocmd filetype c setlocal noexpandtab cindent nolist
+    \ tabstop=4 shiftwidth=4 softtabstop=4
+
+endif
