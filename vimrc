@@ -11,9 +11,6 @@ set backspace=indent,eol,start
 " enable syntax processing
 syntax enable
 
-" allow different settings for different filetypes
-filetype plugin indent on
-
 " set UTF-8 encoding
 scriptencoding utf-8
 set encoding=utf-8
@@ -92,10 +89,23 @@ nnoremap <Leader><Leader> <C-^>
 " difference settings for difference filetypes
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" the autocmd feature is optional if you want to compile your own vim.
+" anyway, this condition does not hurt.
 if has("autocmd")
 
+  " allow different settings for different filetypes
+  filetype plugin indent on
+
   " setting for c type files
-  autocmd filetype c setlocal noexpandtab cindent nolist
+  autocmd Filetype c setlocal noexpandtab cindent nolist
+    \ tabstop=4 shiftwidth=4 softtabstop=4
+
+  " set make filetype
+  autocmd BufRead,BufNewFile *Makefile* setlocal filetype=make
+
+  " in makefile, don't expand tabs to spaces,
+  " since actual tab chars are needed.
+  autocmd Filetype make setlocal noexpandtab nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
 
 endif
