@@ -83,6 +83,11 @@ nnoremap <Leader>d :nohlsearch<CR>
 " ,, to switch to last edit buffer
 nnoremap <Leader><Leader> <C-^>
 
+" simplify windows navigation
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
