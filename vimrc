@@ -1,6 +1,6 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basic setting
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " wonderful life
 set nocompatible
@@ -53,10 +53,9 @@ set incsearch
 " default indent settings
 set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-" display a line at the edge of testwidth
-set textwidth=80
-set colorcolumn=-1
-
+" highlight angthing over 79 chars in grey
+highlight overLength ctermbg=grey ctermfg=white
+match overLength '\%>79v.\+'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mappings
@@ -85,9 +84,9 @@ nnoremap <Leader>d :nohlsearch<CR>
 nnoremap <Leader><Leader> <C-^>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " the autocmd feature is optional if you want to compile your own vim.
 " anyway, this condition does not hurt.
