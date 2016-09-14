@@ -33,7 +33,8 @@ set showcmd
 set wildmenu
 
 " list all matches and complete till longest common string
-set wildmode=list:longest
+" and use <Tab> to complete the option
+set wildmode=list:longest,full
 
 " keep minimal five lines visible below the cursor
 set scrolloff=5
