@@ -32,10 +32,11 @@ It's good for author to keep code consistent in the way.
 * No space after the name of a function in a call.
   For example, should use printf("hello") not 'printf ("hello").
 
-* One space after keywords 'if', 'for', 'while', 'switch'.
+* One space after keywords 'if', 'for', 'while', 'switch', 'enum' and 'struct'
   For example, should use if (x) not if(x).
 
-* Curly brace on same line for keywords 'if', for', 'while', 'switch'.
+* Curly brace on same line for keywords 'if', for', 'while', 'switch', 'enum'
+  and 'struct'.
 
 * Space before curly brace.
   For example, should use if (x) { not if (x){.
