@@ -54,9 +54,8 @@ set incsearch
 " default indent settings
 set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-" highlight angthing over 79 chars in grey
-highlight overLength ctermbg=grey ctermfg=white
-match overLength '\%>79v.\+'
+" enable modeline
+set modeline
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mappings
@@ -94,6 +93,9 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-_> :split<CR>
 nnoremap <C-\> <C-W><C-V>
 
+" ,r to reload .vimrc
+nnoremap <Leader>r :source $MYVIMRC<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -106,15 +108,23 @@ if has("autocmd")
   filetype plugin indent on
 
   " setting for c type files
-  autocmd Filetype c setlocal noexpandtab cindent nolist
+  autocmd Filetype c setlocal
+    \ noexpandtab
+    \ cindent
+    \ nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
 
-  " set make filetype
+  " in makefile, don't expand tabs to spaces, since actual tab char are needed
   autocmd BufRead,BufNewFile *Makefile* setlocal filetype=make
+  autocmd Filetype make setlocal
+    \ noexpandtab
+    \ nolist
+    \ tabstop=4 shiftwidth=4 softtabstop=4
 
-  " in makefile, don't expand tabs to spaces,
-  " since actual tab chars are needed.
-  autocmd Filetype make setlocal noexpandtab nolist
+  " setting for shell script
+  autocmd Filetype sh setlocal
+    \ noexpandtab
+    \ nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
 
 endif
