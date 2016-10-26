@@ -128,3 +128,112 @@ if has("autocmd")
     \ tabstop=4 shiftwidth=4 softtabstop=4
 
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin management by junegunn/vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
+
+" unite and create user interface
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" show differences with style
+Plug 'mhinz/vim-signify'
+
+" syntax checking
+Plug 'scrooloose/syntastic'
+
+" color palette
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+
+" explore filesystem and open file/dir
+Plug 'scrooloose/nerdtree'
+
+" align text
+Plug 'junegunn/vim-easy-align'
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" color palette
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" vim-airline/vim-airline-themes
+let g:airline_theme='base16'
+
+" altercation/vim-color-solarized
+" enable solarized scheme
+colorscheme solarized
+
+" use transparent background of the terminal emulator
+let g:solarized_termtrans=1
+
+" use 256 color for solarized palette
+let g:solarized_termcolors = 256
+
+" highlight current line
+set cursorline
+
+" enable 256 color
+set t_Co=256
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" scrooloose/syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" enrich statusline to show warningmsg
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" show error signify on the line, where the errors are detected
+let g:syntastic_always_populate_loc_list = 1
+
+" the error window will be automatically opened when errors are detected, and
+" closed when none are detected
+let g:syntastic_auto_loc_list = 1
+
+" run syntax checks when buffers are first loaded, as well as on saving
+let g:syntastic_check_on_open = 1
+
+" skip cehcks when type :wq, :x and :ZZ
+let g:syntastic_check_on_wq = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" scrooloose/nerdtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ,t to open NERDTree
+nnoremap <Leader>t :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" junegunn/vim-easy-align
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ,a to start interactive EasyAlign in visual mode
+xmap <Leader>a <Plug>(EasyAlign)
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shougo/unite.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ,e to select one opened buffer
+nnoremap <leader>e :<C-u>Unite  buffer<CR>
+
+" ,s to start global search
+nnoremap <Leader>s :<C-u>Unite -auto-preview grep:.<CR>
+
+" default use grep to search if there is no ag command
+if executable('ag')
+  " set ag to search
+  let g:unite_source_grep_command = 'ag'
+
+  " setup ag search options
+  let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+
+  " set grep recursive option to empty
+  let g:unite_source_grep_recursive_opt = ''
+endif
