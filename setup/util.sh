@@ -112,7 +112,7 @@ do_it() {
 	code=$?
 	set -e
 
-	kill ${spinner_pid} > /dev/null 2>1&
+	kill ${spinner_pid} > /dev/null 2>&1
 	wait ${spinner_pid}
 	clear_line
 
