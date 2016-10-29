@@ -2,17 +2,15 @@ NAME := Wei Fu
 EMAIL := wei.fu.1218@gmail.com
 MAKEFLAGS += --silent
 
-install: install_dotfiles
+install: setup_vim \
+	setup_tmux
 
-install_dotfiles: setup/install_dotfiles
-	./setup/install_dotfiles
+setup_vim:
+	./setup/setup_vim
 
-clean: clean_dotfiles
-
-clean_dotfiles: setup/clean_dotfiles
-	./setup/clean_dotfiles
+setup_tmux:
+	./setup/setup_tmux
 
 .PHONY: install \
-	install_dotfiles \
-	clean \
-	clean_dotfiles
+		setup_tmux \
+		setup_vim \
