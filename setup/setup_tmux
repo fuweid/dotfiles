@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# setup tmux
+
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+cd ..
+
+readonly REPO_BASE="${PWD}"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_tmux_conf() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/tmux/tmux.conf"
+  dest_file="${HOME}/.$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+main() {
+  echo -e "\n== setup tmux ==\n"
+  install_tmux_conf
+}
+
+main

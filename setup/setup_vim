@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+#
+# setup vim
+
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+cd ..
+
+readonly REPO_BASE="${PWD}"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_vimrc() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/vim/vimrc"
+  dest_file="${HOME}/.$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+install_vim_plug() {
+  local cmd msg
+
+  cmd="curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  msg="install vim-plug plugin"
+  do_it "${cmd}" "${msg}"
+}
+
+update_plugins() {
+  local cmd msg
+
+  cmd="vim +VimEnter +PlugInstall +qall"
+  msg="update vim plugins [will take several minutes...]"
+  do_it "${cmd}" "${msg}"
+}
+
+main() {
+  echo -e "\n== setup vim ==\n"
+  install_vimrc
+  install_vim_plug
+  update_plugins
+}
+
+main
