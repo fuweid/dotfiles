@@ -2,11 +2,10 @@ services:
   - docker
 
 before_script: |
-  docker pull centos:centos7
-  docker build test/centos -t devel
+  docker pull wfu1218/devel-centos:centos7
 
 script: |
-  docker run --rm -it -v ${PWD}:/home devel sh -c ". ~/.bashrc; cd /home; make; make test"
+  docker run --rm -it -v ${PWD}:/home wfu1218/devel-centos:centos7 sh -c ". ~/.bashrc; cd /home; make; make test"
 
 after_script: |
-  docker rmi devel-env
+  docker rmi wfu1218/devel-centos:centos7
