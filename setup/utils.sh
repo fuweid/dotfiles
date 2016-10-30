@@ -108,8 +108,8 @@ __cleanup_all_subprocesses() {
   local pid
 
   for pid in $(jobs -p); do
-    kill ${pid}
-    wait ${pid}
+    kill "${pid}"
+    wait "${pid}"
   done
 }
 
