@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# check all shell scripts
+
+cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+cd ..
+
+readonly REPO_BASE="${PWD}"
+source "${REPO_BASE}/setup/utils.sh"
+
+check_shell_scripts() {
+  local cmd msg
+
+  cmd="find ${REPO_BASE}/setup/* test/* -type f -exec shellcheck {} + 1>&2"
+  msg="shellcheck all shell scripts"
+  do_it "${cmd}" "${msg}"
+}
+
+main() {
+  check_shell_scripts
+}
+
+main
