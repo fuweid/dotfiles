@@ -109,7 +109,7 @@ if has("autocmd")
 
   " setting for c type files
   autocmd Filetype c setlocal
-    \ noexpandtab
+    \ expandtab
     \ cindent
     \ nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
@@ -123,6 +123,7 @@ if has("autocmd")
 
   " setting for shell script
   autocmd Filetype sh setlocal
+    \ expandtab
     \ tabstop=2 shiftwidth=2 softtabstop=2
 endif
 
