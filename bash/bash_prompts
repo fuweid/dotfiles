@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+#
+# Customize shell prompts
+#
+# Note: Don't set errexit flag in this script.
+
+# git status as prompt
+__git_prompt() {
+  local branch_name status cyan green red reset clean dirty
+
+  cyan="\\e[36m"
+  green="\\e[32m"
+  red="\\e[31m"
+  reset="\\e[0m"
+  clean="o"
+  dirty="✘"
+
+  branch_name=""
+  status="${green}${clean}${reset}"
+
+  # check git is available
+  command -v git > /dev/null 2>&1 || return 0
+
+  # check the current directory is in a Git repository
+  git rev-parse > /dev/null 2>&1 || return 0
+
+  # check the current directory is in .git directory
+  [[ "$(git rev-parse --is-inside-git-dir)" == "true" ]] && return 0
+
+  # check dirty status:
+  # 1. uncommitted staged changes
+  # 2. unstaged changes
+  # 3. untracked files
+  ( [[ ! -n "$(git diff --quiet --ignore-submodules --staged)" ]] \
+    || [[ ! -n "$(git diff-files --quiet --ignore-submodules --)" ]] \
+    || [[ -n "$(git ls-files --others --exclude-standard)" ]]) \
+    && status="${red}${dirty}${reset}"
+
+  # check the name of current branch
+  branch_name="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+  [[ "${branch_name}" == "HEAD" ]] &&
+    branch_name="$(git rev-parse --short HEAD 2> /dev/null)"
+
+  printf "%b" "${cyan}git:${branch_name}${reset} ${status}"
+}
+
+# customize prompt and called by PROMPT_COMMAND
+__customize_prompts() {
+  # make sure that $? is the exit code of last command
+  local code="$?"
+
+  local prompts green red yellow reset
+
+  prompts=""
+  green="\\e[32m"
+  red="\\e[31m"
+  yellow="\\e[33m"
+  reset="\\e[0m"
+
+  prompts="${reset}"
+  prompts+="${yellow}\u${reset} at ${yellow}\h${reset} in ${reset}"
+  prompts+="${green}\w${reset} "
+  prompts+="\$(__git_prompt)${reset}"
+  [[ "${code}" -ne 0 ]] && prompts+=" ${red}C:${code}${reset}"
+  prompts+="\n${red}!!\! ${reset}"
+
+  PS1="${prompts}"
+  export PS1
+}
+
+# from https://www.gnu.org/software/bash/manual/bashref.html
+#   If set PROMPT_COMMAND, the value is interpreted as a command to execute
+#   before the printing of each primary prompt ($PS1).
+export PROMPT_COMMAND=__customize_prompts
