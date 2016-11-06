@@ -2,10 +2,10 @@
 #
 # setup vim
 
-cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ..
 
-readonly REPO_BASE="${PWD}"
+readonly REPO_BASE="$(pwd -P)"
 source "${REPO_BASE}/setup/utils.sh"
 
 install_vimrc() {

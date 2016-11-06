@@ -13,11 +13,11 @@ set -o nounset
 set -o pipefail
 
 # set color and format
-CLEAR_LINE="echo -en \r"
-SETCOLOR_SUCCESS="echo -en \e[32m"
-SETCOLOR_FAIFURE="echo -en \e[31m"
-SETCOLOR_WARNING="echo -en \e[33m"
-SETCOLOR_NORMAL="echo -en \e[0m"
+CLEAR_LINE="printf \\r"
+SETCOLOR_SUCCESS="printf \\e[32m"
+SETCOLOR_FAIFURE="printf \\e[31m"
+SETCOLOR_WARNING="printf \\e[33m"
+SETCOLOR_NORMAL="printf  \\e[0m"
 
 # logging helper
 __echo_success() {
@@ -119,7 +119,7 @@ do_it() {
 
   cmd=$1
   msg=$2
-  log_file=$(mktemp)
+  log_file=$(mktemp -t 'dotfile.XXXXX')
 
   # clean up subprocesses when quit
   trap '__cleanup_all_subprocesses' EXIT
@@ -148,14 +148,9 @@ mk_link() {
   res="make link ${src_file} -> ${dest_file}"
 
   [[ -e "${dest_file}" ]] \
-    && [[ "$(readlink -f "${dest_file}")" == "${src_file}" ]] \
-    && success "${res}" \
-    && return 0
-
-  [[ -e "${dest_file}" ]] \
     && ask "${dest_file} already exists. Do you want to overwrite it?"\
     && failure "${res}" \
-    && return 0
+    && exit 0
 
   ln -sf "${src_file}" "${dest_file}"
   success "${res}"
