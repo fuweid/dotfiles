@@ -39,7 +39,7 @@ __git_prompt() {
   [[ "${branch_name}" == "HEAD" ]] &&
     branch_name="$(git rev-parse --short HEAD 2> /dev/null)"
 
-  printf "%b" "${cyan}git:${branch_name}${reset} ${status}"
+  printf "%b" "on ${cyan}git:${branch_name}${reset} ${status}"
 }
 
 # customize prompt and called by PROMPT_COMMAND
