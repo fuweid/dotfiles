@@ -31,9 +31,7 @@ __git_prompt() {
   # 1. uncommitted staged changes
   # 2. unstaged changes
   # 3. untracked files
-  ( [[ ! -n "$(git diff --quiet --ignore-submodules --staged)" ]] \
-    || [[ ! -n "$(git diff-files --quiet --ignore-submodules --)" ]] \
-    || [[ -n "$(git ls-files --others --exclude-standard)" ]]) \
+  [[ -n "$(git status --short --ignore-submodules)" ]] \
     && status="${red}${dirty}${reset}"
 
   # check the name of current branch
