@@ -150,8 +150,26 @@ mk_link() {
   [[ -e "${dest_file}" ]] \
     && ask "${dest_file} already exists. Do you want to overwrite it?"\
     && failure "${res}" \
-    && exit 0
+    && return 0
 
   ln -sf "${src_file}" "${dest_file}"
   success "${res}"
+}
+
+# insert line into file if the line doesn't has the line
+insert_line() {
+  local file line line_num
+
+  file=$1
+  line=$2
+
+  [[ -f "${file}" ]] || touch "${file}"
+  line_num="$(grep -nF "${line}" "${file}" || echo)"
+
+  if [[ ! -n "${line_num}" ]]; then
+    echo >> "${file}"
+    echo "${line}" >> "${file}"
+  fi
+
+  success "insert '${line}' line into ${file}"
 }
