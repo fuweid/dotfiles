@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# Load bash-specific startup rc files
+#
+# Note: Don't set errexit flag in this script
+
+declare -a bashrc_files
+bashrc_files=(
+  "${HOME}/.bashrc.d/bash_prompts"
+)
+
+for rc_file in "${bashrc_files[@]}" ; do
+  [[ -e "${rc_file}" ]] && source "${rc_file}"
+done
+
+unset rc_file
+unset bashrc_files
