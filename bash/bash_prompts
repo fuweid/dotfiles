@@ -15,31 +15,24 @@ __git_prompt() {
   clean="o"
   dirty="✘"
 
-  branch_name=""
-  status="${green}${clean}${reset}"
-
   # check git is available
-  command -v git > /dev/null 2>&1 || return 0
+  command -v git > /dev/null 2>&1 || return
 
   # check the current directory is in a Git repository
-  git rev-parse > /dev/null 2>&1 || return 0
+  [[ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" == true ]] \
+    || return
 
-  # check the current directory is in .git directory
-  [[ "$(git rev-parse --is-inside-git-dir)" == "true" ]] && return 0
-
-  # check dirty status:
-  # 1. uncommitted staged changes
-  # 2. unstaged changes
-  # 3. untracked files
+  # check dirty status
+  status="${green}${clean}${reset}"
   [[ -n "$(git status --short --ignore-submodules)" ]] \
     && status="${red}${dirty}${reset}"
 
   # check the name of current branch
   branch_name="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
-  [[ "${branch_name}" == "HEAD" ]] &&
-    branch_name="$(git rev-parse --short HEAD 2> /dev/null)"
+  [[ "${branch_name}" == "HEAD" ]] \
+    && branch_name="$(git rev-parse --short HEAD 2> /dev/null)"
 
-  printf "%b" "on ${cyan}git:${branch_name}${reset} ${status}"
+  printf "%b" " on ${cyan}git:${branch_name}${reset} ${status}"
 }
 
 # customize prompt and called by PROMPT_COMMAND
@@ -47,22 +40,37 @@ __customize_prompts() {
   # make sure that $? is the exit code of last command
   local code="$?"
 
-  local prompts green red yellow reset
+  local green red yellow reset
 
-  prompts=""
   green="\\e[32m"
   red="\\e[31m"
   yellow="\\e[33m"
   reset="\\e[0m"
 
-  prompts="${reset}"
-  prompts+="${yellow}\u${reset} at ${yellow}\h${reset} in ${reset}"
-  prompts+="${green}\w${reset} "
-  prompts+="\$(__git_prompt)${reset}"
-  [[ "${code}" -ne 0 ]] && prompts+=" ${red}C:${code}${reset}"
-  prompts+="\n${red}!!\! ${reset}"
+  [[ "${code}" -ne 0 ]] \
+    && code=" ${red}C:${code}${reset}"\
+    || code=""
 
-  PS1="${prompts}"
+  # Add "non-printing escape sequence" in the last because Bash needs to
+  # know the position of the cursor so that the terminal can be updated
+  # correctly, especially type CTRL-u to delete whole line.
+  # For example, if there is no "non-printing escape sequence" setting,
+  #
+  # $ xxxxxxxxxxxxxxxxxx => CTRL-u
+  # $ xxxxxx             => result
+  #
+  # The bash considers that it finished the CTRL-u action. But there are
+  # still characters.
+  PS1="${reset}\n"
+  PS1+="${yellow}\u${reset}"
+  PS1+=" at "
+  PS1+="${yellow}\h${reset}"
+  PS1+=" in "
+  PS1+="${green}\w${reset}"
+  PS1+="\$(__git_prompt)"
+  PS1+="${code}"
+  PS1+="\n"
+  PS1+="\[${red}\]!!\! \[${reset}\]"
   export PS1
 }
 
