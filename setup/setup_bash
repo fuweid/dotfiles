@@ -24,6 +24,9 @@ install_bashrc_files() {
   rcs=(
     "bashrc"
     "bash_prompts"
+    "bash_alias"
+    "bash_exports"
+    "bash_options"
   )
 
   for file in "${rcs[@]}"; do
