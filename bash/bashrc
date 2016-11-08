@@ -7,6 +7,9 @@
 declare -a bashrc_files
 bashrc_files=(
   "${HOME}/.bashrc.d/bash_prompts"
+  "${HOME}/.bashrc.d/bash_alias"
+  "${HOME}/.bashrc.d/bash_exports"
+  "${HOME}/.bashrc.d/bash_options"
 )
 
 for rc_file in "${bashrc_files[@]}" ; do
