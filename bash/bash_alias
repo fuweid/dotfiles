@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# Customize alias
+#
+# Note: Don't set errexit flag in this script.
+
+# git
+alias gst="git status"
+alias gsb="git status -sb"
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify -m "--wip--"'
+alias guwip='git log --pretty=oneline --abbrev-commit -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+
+# ls
+alias ls="ls -G"
+alias ll="ls -alG"
+
+# cd
+alias ..="cd .."
+alias ...="cd ../../"
+
+# admin
+alias please="sudo"
+alias bye="exit"
+alias poweroff="shutdown -P now"
