@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# Customize bash options. More information:
+#   https://www.gnu.org/software/bash/manual/bashref.html#The-Shopt-Builtin
+#
+# Note: Don't set errexit flag in this script.
+
+# append history when exit shell, not override
+shopt -s histappend
