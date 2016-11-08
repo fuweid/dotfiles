@@ -74,7 +74,6 @@ __customize_prompts() {
   export PS1
 }
 
-# from https://www.gnu.org/software/bash/manual/bashref.html
-#   If set PROMPT_COMMAND, the value is interpreted as a command to execute
-#   before the printing of each primary prompt ($PS1).
-export PROMPT_COMMAND=__customize_prompts
+# export for bash variable PROMPT_COMMAND
+export -f __git_prompt
+export -f __customize_prompts
