@@ -17,6 +17,9 @@ set encoding=utf-8
 set fileformat=unix
 set fileencoding=utf-8
 
+" do not redraw while running macros (faster)
+set lazyredraw
+
 " show the line and column number of the cursor position
 set ruler
 
