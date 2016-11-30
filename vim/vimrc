@@ -60,9 +60,6 @@ set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 " enable modeline
 set modeline
 
-" highlight 80th column
-set colorcolumn=80
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -181,12 +178,6 @@ let g:solarized_termtrans=1
 
 " use 256 color for solarized palette
 let g:solarized_termcolors = 256
-
-" highlight current line
-set cursorline
-
-" highlight current line with DarkBlue
-highlight CursorLine cterm=None ctermbg=DarkBlue ctermfg=White
 
 " enable 256 color
 set t_Co=256
