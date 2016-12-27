@@ -27,7 +27,4 @@ export LC_ALL="en_US.UTF-8"
 # from https://www.gnu.org/software/bash/manual/bashref.html
 #   If set PROMPT_COMMAND, the value is interpreted as a command to execute
 #   before the printing of each primary prompt ($PS1).
-#
-# flush .bash_history after each command to make sure that open new
-# shell session and retrieve history from exisiting session
-export PROMPT_COMMAND="__customize_prompts; history -a"
+export PROMPT_COMMAND="__customize_prompts"

@@ -70,7 +70,7 @@ __customize_prompts() {
   PS1+="\$(__git_prompt)"
   PS1+="${code}"
   PS1+="\n"
-  PS1+="\[${red}\]!!\! \[${reset}\]"
+  PS1+="\[${red}\]$ \[${reset}\]"
   export PS1
 }
 
