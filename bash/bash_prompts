@@ -62,6 +62,7 @@ __customize_prompts() {
   # The bash considers that it finished the CTRL-u action. But there are
   # still characters.
   PS1="${reset}\n"
+  PS1+="${red}$ ${reset}"
   PS1+="${yellow}\u${reset}"
   PS1+=" at "
   PS1+="${yellow}\h${reset}"
