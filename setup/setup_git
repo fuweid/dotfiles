@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# setup git
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd ..
+
+readonly REPO_BASE="$(pwd -P)"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_git_conf() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/git/gitconfig"
+  dest_file="${HOME}/.$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+main() {
+  echo -e "\n== setup git ==\n"
+  install_git_conf
+}
+
+main
