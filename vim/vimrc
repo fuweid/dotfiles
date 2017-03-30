@@ -174,7 +174,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color palette
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " vim-airline/vim-airline-themes
 let g:airline_theme='base16'
 
@@ -198,30 +197,32 @@ set t_Co=256
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrooloose/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " enrich statusline to show warningmsg
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrooloose/nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " ,t to open NERDTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " junegunn/vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " ,a to start interactive EasyAlign in visual mode
 xmap <Leader>a <Plug>(EasyAlign)
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/unite.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " ,e to select one opened buffer
 nnoremap <leader>e :<C-u>Unite  buffer<CR>
 
@@ -240,10 +241,11 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " use neocomplete
 let g:neocomplete#enable_at_startup = 1
 
@@ -255,3 +257,16 @@ let g:neocomplete#max_list = 10
 
 " use smartcase.
 let g:neocomplete#enable_smart_case = 1
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fatih/vim-go
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntax highlight for golang's functions/methods/structs
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
