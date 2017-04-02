@@ -279,12 +279,19 @@ let g:go_highlight_build_constraints = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " junegunn/fzf.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fzf in fullscreen
+let g:fzf_layout = {}
+
 " text search with preview
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+  \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview('up:60%'), <bang>0)
 
 " ,s to start global search
 nnoremap <Leader>s :Ag! 
+
+" files search with preview
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview('up:60%'), <bang>0)
+
+" ,f to start files search
+nnoremap <Leader>f :Files<CR>
