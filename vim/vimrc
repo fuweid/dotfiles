@@ -169,7 +169,13 @@ Plug 'fatih/vim-go'
 " auto neocomplete if enable lua
 Plug 'Shougo/neocomplete'
 
+" powerful text search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " color palette
@@ -226,9 +232,6 @@ xmap <Leader>a <Plug>(EasyAlign)
 " ,e to select one opened buffer
 nnoremap <leader>e :<C-u>Unite  buffer<CR>
 
-" ,s to start global search
-nnoremap <Leader>s :<C-u>Unite -auto-preview grep:.<CR>
-
 " default use grep to search if there is no ag command
 if executable('ag')
   " set ag to search
@@ -270,3 +273,18 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" junegunn/fzf.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" search preview
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" ,s to start global search
+nnoremap <Leader>s :Ag! 
