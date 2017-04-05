@@ -12,7 +12,7 @@ alias guwip='git log --pretty=oneline --abbrev-commit -n 1 | grep -q -c "\-\-wip
 
 # ls
 alias ls="ls -G"
-alias ll="ls -alG"
+alias ll="ls -alhG" # human-readable for file size
 
 # cd
 alias ..="cd .."
