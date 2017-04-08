@@ -203,6 +203,11 @@ let g:solarized_termcolors = 256
 " enable 256 color
 set t_Co=256
 
+" show 80th column to indicate the boundary
+set colorcolumn=80
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrooloose/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
