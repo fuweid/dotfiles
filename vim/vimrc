@@ -99,6 +99,9 @@ nnoremap <C-\> <C-W><C-V>
 " ,r to reload .vimrc
 nnoremap <Leader>r :source $MYVIMRC<CR>
 
+" ,z to close Preview Window
+nnoremap <Leader>z <C-W><C-z>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
