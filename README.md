@@ -1,4 +1,4 @@
-# Wei does dotfiles [![Build Status](https://travis-ci.org/fhfuwei/dotfiles.svg?branch=master)](https://travis-ci.org/fhfuwei/dotfiles)
+# Wei does dotfiles [![Build Status](https://travis-ci.org/0x04C2/dotfiles.svg?branch=master)](https://travis-ci.org/0x04C2/dotfiles)
 
 I was sick and really really tired of setting up the brew new environment.
 
