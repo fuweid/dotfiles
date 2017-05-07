@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#
+# setup gdb
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd ..
+
+readonly REPO_BASE="$(pwd -P)"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_gdbinit() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/gdb/gdbinit"
+  dest_file="${HOME}/.$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+main() {
+  echo -e "\n== setup gdb ==\n"
+  install_gdbinit
+}
+
+main
