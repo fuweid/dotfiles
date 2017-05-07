@@ -5,7 +5,8 @@ MAKEFLAGS += --silent
 install: setup_vim \
 	setup_tmux \
 	setup_bash \
-	setup_git
+	setup_git \
+	setup_gdb
 
 setup_vim:
 	./setup/setup_vim
