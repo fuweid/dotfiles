@@ -1,0 +1,18 @@
+# -----------------------------------------------------------------------------
+# Make gdb friendly
+# -----------------------------------------------------------------------------
+
+# save command history
+set history save
+
+# disable confrim request
+set confirm off
+
+# display array in one line
+set print array off
+
+# display array element index
+set print array-indexes on
+
+# don't start new shell to run program
+set startup-with-shell off
