@@ -11,6 +11,9 @@ install: setup_vim \
 setup_vim:
 	./setup/setup_vim
 
+setup_nvim:
+	./setup/setup_nvim
+
 setup_tmux:
 	./setup/setup_tmux
 
@@ -29,6 +32,7 @@ test:
 .PHONY: install \
 		setup_tmux \
 		setup_vim \
+		setup_nvim \
 		setup_bash \
 		setup_git \
 		setup_gdb \
