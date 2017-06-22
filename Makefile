@@ -3,6 +3,7 @@ EMAIL := fhfuwei@163.com
 MAKEFLAGS += --silent
 
 install: setup_vim \
+	setup_nvim \
 	setup_tmux \
 	setup_bash \
 	setup_git \
