@@ -8,6 +8,10 @@ cd ..
 readonly REPO_BASE="$(pwd -P)"
 source "${REPO_BASE}/setup/utils.sh"
 
+create_config_dir() {
+  mkdir -p "${HOME}/.config/nvim/"
+}
+
 install_nvimrc() {
   local src_file dest_file
 
@@ -28,13 +32,14 @@ install_nvim_plug() {
 update_plugins() {
   local cmd msg
 
-  cmd="nvim +VimEnter +PlugInstall +qall"
+  cmd="nvim +PlugInstall +qall < $(tty) > /dev/null"
   msg="update nvim plugins [will take several minutes...]"
   do_it "${cmd}" "${msg}"
 }
 
 main() {
   echo -e "\n== setup nvim ==\n"
+  create_config_dir
   install_nvimrc
   install_nvim_plug
   update_plugins
