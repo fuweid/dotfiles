@@ -32,7 +32,7 @@ install_nvim_plug() {
 update_plugins() {
   local cmd msg
 
-  cmd="nvim +PlugInstall +qall < $(tty) > /dev/null"
+  cmd="nvim +PlugInstall +qall < /dev/ttys000 > /dev/null"
   msg="update nvim plugins [will take several minutes...]"
   do_it "${cmd}" "${msg}"
 }
