@@ -7,4 +7,5 @@ before_install:
   - brew install shellcheck
 
 script: |
+  make &&
   make test
