@@ -1,11 +1,10 @@
-services:
-  - docker
+os: osx
 
-before_script: |
-  docker pull wfu1218/devel-centos:centos7
+before_install:
+  - brew update
+  - brew install vim
+  - brew install neovim/neovim/neovim
+  - brew install shellcheck
 
 script: |
-  docker run --rm -it -v ${PWD}:/home wfu1218/devel-centos:centos7 sh -c ". ~/.bashrc; cd /home; make; make test"
-
-after_script: |
-  docker rmi wfu1218/devel-centos:centos7
+  make test
