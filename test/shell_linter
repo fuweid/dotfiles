@@ -28,6 +28,7 @@ check_shell_scripts() {
 }
 
 main() {
+  echo -e "\n== check shell scripts ==\n"
   check_shell_scripts
 }
 
