@@ -169,8 +169,9 @@ Plug 'junegunn/vim-easy-align'
 " vim-go~~~~
 Plug 'fatih/vim-go'
 
-" auto neocomplete if enable lua
-Plug 'Shougo/neocomplete'
+" auto neocomplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " powerful text search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -258,19 +259,9 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shougo/neocomplete.vim
+" Shougo/deoplete.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use neocomplete
-let g:neocomplete#enable_at_startup = 1
-
-" set minimum syntax keyword length
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-
-" setup the number of candidates
-let g:neocomplete#max_list = 10
-
-" use smartcase.
-let g:neocomplete#enable_smart_case = 1
+let g:deoplete#enable_at_startup = 1
 
 
 
