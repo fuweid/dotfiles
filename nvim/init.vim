@@ -276,6 +276,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" disable :GoFmt when save
+let g:go_fmt_autosave = 0
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -297,6 +300,9 @@ command! -bang -nargs=? -complete=dir Files
 
 " ,f to start files search
 nnoremap <Leader>f :Files<CR>
+
+" ,<tab> to show mapping keys in normal mode
+nmap <leader><tab> <plug>(fzf-maps-n)
 
 
 
