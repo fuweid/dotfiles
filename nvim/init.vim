@@ -276,6 +276,9 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" goimports organizes package by group
+let g:go_fmt_command = "goimports"
+
 " disable :GoFmt when save
 let g:go_fmt_autosave = 0
 
