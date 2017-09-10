@@ -7,7 +7,8 @@ install: setup_vim \
 	setup_tmux \
 	setup_bash \
 	setup_git \
-	setup_gdb
+	setup_gdb \
+	setup_zsh
 
 setup_vim:
 	./setup/setup_vim
@@ -27,6 +28,9 @@ setup_git:
 setup_gdb:
 	./setup/setup_gdb
 
+setup_zsh:
+	./setup/setup_zsh
+
 test:
 	./test/shell_linter
 
@@ -37,4 +41,5 @@ test:
 		setup_bash \
 		setup_git \
 		setup_gdb \
+		setup_zsh \
 		test

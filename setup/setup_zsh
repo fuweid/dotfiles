@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#
+# setup zshrc
+#
+# The configuration is provided by github.com/robbyrussell/oh-my-zsh.
+# The zshrc file will be located in ${HOME}.
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd ..
+
+readonly REPO_BASE="$(pwd -P)"
+source "${REPO_BASE}/setup/utils.sh"
+
+download_ohmyzsh() {
+  local cmd msg
+
+  msg="download oh-my-zsh"
+  cmd='sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+  do_it "${cmd}" "${msg}"
+}
+
+install_zshrc() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/zsh/zshrc"
+  dest_file="${HOME}/.$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+main() {
+  echo -e "\n==setup zsh==\n"
+  download_ohmyzsh
+  install_zshrc
+}
+
+main
