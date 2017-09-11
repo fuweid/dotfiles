@@ -29,7 +29,7 @@ setup_gdb:
 	./setup/setup_gdb
 
 setup_zsh:
-	./setup/setup_zsh
+	SHELL=/bin/zsh ./setup/setup_zsh
 
 test:
 	./test/shell_linter
