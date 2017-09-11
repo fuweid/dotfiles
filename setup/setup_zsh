@@ -12,10 +12,16 @@ readonly REPO_BASE="$(pwd -P)"
 source "${REPO_BASE}/setup/utils.sh"
 
 download_ohmyzsh() {
-  local cmd msg
+  local cmd msg url
+
+  url="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh"
+  url="${url}/master/tools/install.sh"
 
   msg="download oh-my-zsh"
-  cmd='sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+
+  # shellcheck disable=SC2016
+  cmd='sh -c "$(curl -fsSL '${url}')"'
+
   do_it "${cmd}" "${msg}"
 }
 
