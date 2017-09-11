@@ -1,8 +1,5 @@
 os: osx
 
-env:
-  SH=zsh
-
 before_install:
   - brew update
   - brew install curl
