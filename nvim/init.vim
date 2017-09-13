@@ -169,6 +169,9 @@ Plug 'junegunn/vim-easy-align'
 " vim-go~~~~
 Plug 'fatih/vim-go'
 
+" delve vs gdb and ....
+Plug 'sebdah/vim-delve'
+
 " auto neocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
