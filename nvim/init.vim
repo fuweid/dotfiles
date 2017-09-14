@@ -102,6 +102,10 @@ nnoremap <Leader>r :source $MYVIMRC<CR>
 " ,z to close Preview Window
 nnoremap <Leader>z <C-W><C-z>
 
+" ESC to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
