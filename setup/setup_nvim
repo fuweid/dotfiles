@@ -15,8 +15,8 @@ create_config_dir() {
 install_nvimrc() {
   local src_file dest_file
 
-  src_file="${REPO_BASE}/nvim/init.vim"
-  dest_file="${HOME}/.config/nvim/$(basename "${src_file}")"
+  src_file="${REPO_BASE}/vim/vimrc"
+  dest_file="${HOME}/.config/nvim/init.vim"
   mk_link "${src_file}" "${dest_file}"
 }
 

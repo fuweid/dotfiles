@@ -1,7 +1,53 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin management by junegunn/vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.config/nvim/plugged')
+
+" unite and create user interface
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimshell.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" show differences with style
+Plug 'mhinz/vim-signify'
+
+" syntax checking
+Plug 'scrooloose/syntastic'
+
+" color palette
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+
+" explore filesystem and open file/dir
+Plug 'scrooloose/nerdtree'
+
+" align text
+Plug 'junegunn/vim-easy-align'
+
+" vim-go~~~~
+Plug 'fatih/vim-go'
+
+" delve vs gdb and ....
+Plug 'sebdah/vim-delve'
+
+" auto neocomplete [ used in neovim ]
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+" auto neocomplete if enable lua [ used in vim ]
+Plug 'Shougo/neocomplete'
+
+" powerful text search
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " basic setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " wonderful life
 set nocompatible
 
@@ -54,16 +100,13 @@ set hlsearch
 " hightlight the pattern when typing
 set incsearch
 
-" default indent settings
-set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
-
 " enable modeline
 set modeline
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " key mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " change mapleader key to ,
 let mapleader=','
 
@@ -102,10 +145,10 @@ nnoremap <Leader>r :source $MYVIMRC<CR>
 " ,z to close Preview Window
 nnoremap <Leader>z <C-W><C-z>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " difference settings for difference filetypes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " the autocmd feature is optional if you want to compile your own vim.
 " anyway, this condition does not hurt.
 if has("autocmd")
@@ -132,55 +175,28 @@ if has("autocmd")
     \ expandtab
     \ tabstop=2 shiftwidth=2 softtabstop=2
 
-  " setting for golang
-  autocmd Filetype go setlocal
+  " setting for proto buffer
+  au! BufRead,BufNewFile *.proto setfiletype proto
+  autocmd Filetype proto setlocal
+    \ nolist
     \ expandtab
-    \ cindent
+    \ autoindent
+    \ tabstop=2 shiftwidth=2 softtabstop=2
+
+  " setting for ruby script
+  au! BufRead,BufNewFile *.rb setfiletype ruby
+  autocmd Filetype ruby setlocal
+    \ nolist
+    \ expandtab
+    \ autoindent
+    \ tabstop=2 shiftwidth=2 softtabstop=2
+
+  " setting for json file
+  au! BufRead,BufNewFile *.json setfiletype json
+  autocmd Filetype json setlocal
     \ nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin management by junegunn/vim-plug
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
-
-" unite and create user interface
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-" show differences with style
-Plug 'mhinz/vim-signify'
-
-" syntax checking
-Plug 'scrooloose/syntastic'
-
-" color palette
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
-
-" explore filesystem and open file/dir
-Plug 'scrooloose/nerdtree'
-
-" align text
-Plug 'junegunn/vim-easy-align'
-
-" vim-go~~~~
-Plug 'fatih/vim-go'
-
-" auto neocomplete if enable lua
-Plug 'Shougo/neocomplete'
-
-" powerful text search
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" tagbar
-Plug 'majutsushi/tagbar'
-
-call plug#end()
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -210,7 +226,6 @@ set t_Co=256
 set colorcolumn=80
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrooloose/syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -220,7 +235,6 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " scrooloose/nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -228,13 +242,11 @@ set statusline+=%*
 nnoremap <Leader>t :NERDTreeToggle<CR>
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " junegunn/vim-easy-align
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ,a to start interactive EasyAlign in visual mode
 xmap <Leader>a <Plug>(EasyAlign)
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,7 +268,6 @@ if executable('ag')
 endif
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -273,6 +284,11 @@ let g:neocomplete#max_list = 10
 let g:neocomplete#enable_smart_case = 1
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shougo/deoplete.nvim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fatih/vim-go
@@ -288,9 +304,8 @@ let g:go_highlight_build_constraints = 1
 " goimports organizes package by group
 let g:go_fmt_command = "goimports"
 
-" disable :GoFmt when save
-let g:go_fmt_autosave = 0
-
+" disable autoindent gopath
+let g:go_autodetect_gopath = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -315,38 +330,3 @@ nnoremap <Leader>f :Files<CR>
 
 " ,<tab> to show mapping keys in normal mode
 nmap <leader><tab> <plug>(fzf-maps-n)
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" majutsushi/tagbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" tagbar for golang. Before use this, we need to install gotags
-" go get -u github.com/jstemmer/gotags
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
