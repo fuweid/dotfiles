@@ -31,12 +31,13 @@ Plug 'fatih/vim-go'
 " delve vs gdb and ....
 Plug 'sebdah/vim-delve'
 
-" auto neocomplete [ used in neovim ]
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-
-" auto neocomplete if enable lua [ used in vim ]
-Plug 'Shougo/neocomplete'
+" auto neocomplete
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'zchee/deoplete-go', { 'do': 'make'}
+else
+  Plug 'Shougo/neocomplete'
+endif
 
 " powerful text search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -281,23 +282,27 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use neocomplete
-let g:neocomplete#enable_at_startup = 1
+if !has('nvim')
+  " use neocomplete
+  let g:neocomplete#enable_at_startup = 1
 
-" set minimum syntax keyword length
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+  " set minimum syntax keyword length
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-" setup the number of candidates
-let g:neocomplete#max_list = 10
+  " setup the number of candidates
+  let g:neocomplete#max_list = 10
 
-" use smartcase.
-let g:neocomplete#enable_smart_case = 1
+  " use smartcase.
+  let g:neocomplete#enable_smart_case = 1
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shougo/deoplete.nvim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
