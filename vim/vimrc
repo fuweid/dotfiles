@@ -170,6 +170,13 @@ if has("autocmd")
     \ nolist
     \ tabstop=4 shiftwidth=4 softtabstop=4
 
+  " settings for vimrc
+  autocmd BufRead, BufNewFile *vimrc" setlocal filetype vimrc
+  autocmd Filetype vimrc setlocal
+    \ nolist
+    \ expandtab
+    \ tabstop=2 shiftwidth=2 softtabstop=2
+
   " setting for shell script
   autocmd Filetype sh setlocal
     \ expandtab
