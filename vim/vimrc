@@ -207,6 +207,10 @@ if has("autocmd")
   " setting for go
   autocmd Filetype go setlocal nolist
 
+  " setting for yml/yaml config
+  autocmd Filetype yaml setlocal
+    \ nolist
+    \ tabstop=2 shiftwidth=2 softtabstop=2
 endif
 
 
