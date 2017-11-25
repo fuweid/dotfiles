@@ -28,7 +28,7 @@ install_vim_plug() {
 update_plugins() {
   local cmd msg
 
-  cmd="vim +VimEnter +PlugInstall +qall < /dev/ttys000 > /dev/null"
+  cmd="vim +VimEnter +PlugInstall +qall < $(tty) > /dev/null"
   msg="update vim plugins [will take several minutes...]"
   do_it "${cmd}" "${msg}"
 }
