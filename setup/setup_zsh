@@ -26,11 +26,19 @@ download_ohmyzsh() {
 }
 
 install_zshrc() {
+  local -a rcs
   local src_file dest_file
 
-  src_file="${REPO_BASE}/zsh/zshrc"
-  dest_file="${HOME}/.$(basename "${src_file}")"
-  mk_link "${src_file}" "${dest_file}"
+  rcs=(
+    "zshrc"
+    "pathrc"
+  )
+
+  for file in "${rcs[@]}"; do
+    src_file="${REPO_BASE}/zsh/${file}"
+    dest_file="${HOME}/.$(basename "${src_file}")"
+    mk_link "${src_file}" "${dest_file}"
+  done
 }
 
 main() {

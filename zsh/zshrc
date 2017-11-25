@@ -13,6 +13,12 @@ source $ZSH/oh-my-zsh.sh
 # use en_US.UTF-8 encoding
 export LANG=en_US.UTF-8
 
+# load pathrc configure
+export PATHRC="$HOME/.pathrc"
+if [[ -f $PATHRC ]]; then
+  source $PATHRC
+fi
+
 # load workspace configure
 export ZSH_WORKSPACE_RC="$HOME/.workspacerc"
 if [[ -f $ZSH_WORKSPACE_RC ]]; then
