@@ -23,7 +23,7 @@ However, I suggest that you should fully understand **what the setup script does
 DON'T just follow the commands. **Seriously**, DON'T.
 
 ```
-git clone https://github.com/fhfuwei/dotfiles ~/.dotfiles
+git clone https://github.com/0x04C2/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 make
 ```
