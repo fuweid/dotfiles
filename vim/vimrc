@@ -246,7 +246,7 @@ set colorcolumn=80
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " enrich statusline to show warningmsg
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{exists('g:loaded_syntastic_plugin')?SyntasticStatuslineFlag():''}
 set statusline+=%*
 
 

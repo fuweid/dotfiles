@@ -3,6 +3,9 @@ os: osx
 before_install:
   - brew update
   - brew install shellcheck
+  - brew install curl
+  - brew install vim
+  - brew install neovim/neovim/neovim
 
 script: |
-  make test
+  make && make test
