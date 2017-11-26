@@ -28,7 +28,10 @@ install_vim_plug() {
 update_plugins() {
   local cmd msg
 
-  cmd="vim +VimEnter +PlugInstall +qall < $(tty) > /dev/null"
+  # use EX mode and silent mode to install plugins headless
+  #
+  # NOTE: by default, EX mode doesn't have vimrc
+  cmd="vim -E -s -u ${HOME}/.vimrc +PlugInstall +qall"
   msg="update vim plugins [will take several minutes...]"
   do_it "${cmd}" "${msg}"
 }
