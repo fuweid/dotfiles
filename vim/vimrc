@@ -19,9 +19,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 
-" explore filesystem and open file/dir
-Plug 'scrooloose/nerdtree'
-
 " align text
 Plug 'junegunn/vim-easy-align'
 
@@ -248,13 +245,6 @@ set colorcolumn=80
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" scrooloose/nerdtree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ,t to open NERDTree
-nnoremap <Leader>t :NERDTreeToggle<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
