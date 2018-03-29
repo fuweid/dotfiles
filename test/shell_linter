@@ -13,12 +13,14 @@ check_shell_scripts() {
 
   # The linter will ignore the following shellcheck errors:
   #   SC1090: Can't follow non-constant source
-  #   SC2103: Use a ( subshell ) to avoid having to cd back
+  #   SC1117: Prefer to use \\n
   #   SC2034: Foo appears unused.
+  #   SC2103: Use a ( subshell ) to avoid having to cd back
   #   SC2164: Use cd ... || exit in case cd fails
   # "set -euo pipefail" will exit immediately if something wrong here
   cmd="find ${REPO_BASE}/setup/* test/shell_linter -type f -exec \
         shellcheck -e SC1090 \
+                   -e SC1117 \
                    -e SC2103 \
                    -e SC2034 \
                    -e SC2164 \

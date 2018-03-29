@@ -1,4 +1,4 @@
-# Wei does dotfiles [![Build Status](https://travis-ci.org/0x04C2/dotfiles.svg?branch=master)](https://travis-ci.org/0x04C2/dotfiles)
+# Wei does dotfiles [![Build Status](https://travis-ci.org/fuweid/dotfiles.svg?branch=master)](https://travis-ci.org/fuweid/dotfiles)
 
 I was sick and really really tired of setting up the brew new environment.
 
@@ -23,7 +23,7 @@ However, I suggest that you should fully understand **what the setup script does
 DON'T just follow the commands. **Seriously**, DON'T.
 
 ```
-git clone https://github.com/0x04C2/dotfiles ~/.dotfiles
+git clone https://github.com/fuweid/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 make
 ```
