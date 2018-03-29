@@ -8,4 +8,4 @@ before_install:
   - brew install neovim/neovim/neovim
 
 script: |
-  make && make test
+  yes | make && make test
