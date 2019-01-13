@@ -1,5 +1,5 @@
 NAME := Wei Fu
-EMAIL := fhfuwei@163.com
+EMAIL := fuweid89@gmail.com
 MAKEFLAGS += --silent
 
 install: setup_vim \
