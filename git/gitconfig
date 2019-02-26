@@ -1,3 +1,5 @@
 [user]
   name  = Wei Fu
   email = fuweid89@gmail.com
+[core]
+  editor = nvim
