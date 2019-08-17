@@ -166,7 +166,7 @@ insert_line() {
   [[ -f "${file}" ]] || touch "${file}"
   line_num="$(grep -nF "${line}" "${file}" || echo)"
 
-  if [[ ! -n "${line_num}" ]]; then
+  if [[ -z "${line_num}" ]]; then
     echo >> "${file}"
     echo "${line}" >> "${file}"
   fi
