@@ -33,8 +33,8 @@ Plug 'sebdah/vim-delve'
 
 " auto neocomplete
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins', 'tag': '5.0' }
+  Plug 'zchee/deoplete-go', { 'do': 'make', 'tag': '75f3d42ef71a07c06778cab56e76b994a42a55c3' }
 else
   Plug 'Shougo/neocomplete'
 endif
