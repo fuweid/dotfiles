@@ -211,6 +211,20 @@ if has("autocmd")
   autocmd Filetype yaml setlocal
     \ nolist
     \ tabstop=2 shiftwidth=2 softtabstop=2
+
+  " setting for html config
+  autocmd BufRead,BufNewFile *.html setlocal filetype=html
+  autocmd Filetype html setlocal
+    \ nolist
+    \ expandtab
+    \ tabstop=4 shiftwidth=4 softtabstop=4
+
+  " setting for css config
+  autocmd BufRead,BufNewFile *.css setlocal filetype=css
+  autocmd Filetype css setlocal
+    \ nolist
+    \ expandtab
+    \ tabstop=4 shiftwidth=4 softtabstop=4
 endif
 
 
