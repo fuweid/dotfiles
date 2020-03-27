@@ -31,6 +31,9 @@ Plug 'fatih/vim-go'
 " delve vs gdb and ....
 Plug 'sebdah/vim-delve'
 
+" rust?!
+Plug 'rust-lang/rust.vim'
+
 " auto neocomplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -363,3 +366,10 @@ nnoremap <Leader>f :Files<CR>
 
 " ,<tab> to show mapping keys in normal mode
 nmap <leader><tab> <plug>(fzf-maps-n)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rust-lang/rust.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" auto rustFmt
+let g:rustfmt_autosave = 1
