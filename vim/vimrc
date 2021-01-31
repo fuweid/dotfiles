@@ -17,7 +17,7 @@ Plug 'scrooloose/syntastic'
 " color palette
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 " explore filesystem and open file/dir
 Plug 'scrooloose/nerdtree'
@@ -235,27 +235,21 @@ endif
 " color palette
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline/vim-airline-themes
-let g:airline_theme='base16'
+let g:airline_theme='embark'
 
-" altercation/vim-color-solarized
-" dark background
-set background=dark
-
-" enable solarized scheme
+" enable embark scheme
 " use silent to ignore error when install plugins by command line
-silent! colorscheme solarized
+silent! colorscheme embark
 
-" use transparent background of the terminal emulator
-let g:solarized_termtrans=1
-
-" use 256 color for solarized palette
-let g:solarized_termcolors = 256
-
-" enable 256 color
-set t_Co=256
+" supporting truecolors
+set termguicolors
 
 " show 80th column to indicate the boundary
 set colorcolumn=80
+
+" embark-theme/vim
+" Make sure your terminal is set up to handle them.
+let g:embark_terminal_italics = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
