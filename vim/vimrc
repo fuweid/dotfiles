@@ -31,13 +31,12 @@ Plug 'fatih/vim-go'
 " delve vs gdb and ....
 Plug 'sebdah/vim-delve'
 
-" rust?!
-Plug 'rust-lang/rust.vim'
-
 " auto neocomplete
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+  "  Neovim's built-in language server client, need >= v0.5 prerelease
+  Plug 'neovim/nvim-lspconfig'
 else
   Plug 'Shougo/neocomplete'
 endif
@@ -45,6 +44,9 @@ endif
 " powerful text search
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+" rust?!
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
@@ -349,7 +351,7 @@ command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>, fzf#vim#with_preview('up:60%'), <bang>0)
 
 " ,s to start global search
-nnoremap <Leader>s :Ag! 
+nnoremap <Leader>s :Ag!
 
 " files search with preview
 command! -bang -nargs=? -complete=dir Files
@@ -367,3 +369,35 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto rustFmt
 let g:rustfmt_autosave = 1
+
+" use cargo as defaul checker
+let g:syntastic_rust_checkers = ['cargo']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neovim/nvim-lspconfig
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua << EOF
+
+local nvim_lsp = require('lspconfig')
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+end
+
+-- local keybindings when the language server attaches
+local servers = { "rls" }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup { on_attach = on_attach }
+end
+EOF
