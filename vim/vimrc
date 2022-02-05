@@ -48,6 +48,9 @@ Plug 'junegunn/fzf.vim'
 " rust?!
 Plug 'rust-lang/rust.vim'
 
+" cscope for kernel
+Plug 'joe-skb7/cscope-maps'
+
 call plug#end()
 
 
@@ -162,12 +165,7 @@ if has("autocmd")
   " allow different settings for different filetypes
   filetype plugin indent on
 
-  " setting for c type files
-  autocmd Filetype c setlocal
-    \ expandtab
-    \ cindent
-    \ nolist
-    \ tabstop=4 shiftwidth=4 softtabstop=4
+  set nolist
 
   " in makefile, don't expand tabs to spaces, since actual tab char are needed
   autocmd BufRead,BufNewFile *Makefile* setlocal filetype=make
