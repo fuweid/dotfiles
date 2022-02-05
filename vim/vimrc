@@ -17,7 +17,7 @@ Plug 'scrooloose/syntastic'
 " color palette
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'altercation/vim-colors-solarized'
 
 " explore filesystem and open file/dir
 Plug 'scrooloose/nerdtree'
@@ -235,21 +235,25 @@ endif
 " color palette
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-airline/vim-airline-themes
-let g:airline_theme='embark'
+let g:airline_theme='base16_google'
+" urxvt doesn't render emoji well
+let g:airline_symbols_ascii=1
 
-" enable embark scheme
+" dark background
+set background=dark
+
+" altercation/vim-color-solarized
 " use silent to ignore error when install plugins by command line
-silent! colorscheme embark
+silent! colorscheme solarized
 
-" supporting truecolors
-set termguicolors
+" use 256 color for solarized palette
+let g:solarized_termcolors = 256
+
+" enable 256 color
+set t_Co=256
 
 " show 80th column to indicate the boundary
 set colorcolumn=80
-
-" embark-theme/vim
-" Make sure your terminal is set up to handle them.
-let g:embark_terminal_italics = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
