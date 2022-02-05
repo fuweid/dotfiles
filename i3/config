@@ -263,6 +263,9 @@ exec --no-startup-id feh --bg-scale $HOME/Pictures/.wallpaper.png
 # Using ibus 
 exec --no-startup-id ibus-daemon -dr
 #
+# Remap Caps_Lock to Control
+exec --no-startup-id xmodmap $HOME/.Xmodmap
+#
 # Use xrandr|arandr to config minitor(apt install arandr)
 # arandr can export xrandr commandline :)
 #

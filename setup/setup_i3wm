@@ -47,6 +47,11 @@ install_xresource_conf() {
   src_file="${REPO_BASE}/.Xresources"
   dest_file="${HOME}/$(basename "${src_file}")"
   mk_link "${src_file}" "${dest_file}"
+
+  # remapping caps to control
+  src_file="${REPO_BASE}/.Xmodmap"
+  dest_file="${HOME}/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
 }
 
 install_i3wm_conf() {
