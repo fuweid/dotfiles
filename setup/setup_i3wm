@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+#
+# setup i3wm
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd ..
+
+readonly REPO_BASE="$(pwd -P)"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_wallpaper() {
+  local src_file dest_file
+
+  src_file="${REPO_BASE}/.wallpaper.png"
+  dest_file="${HOME}/Pictures/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+install_required_app() {
+  # wallpaper
+  sudo apt install feh -y
+  # monitor settings
+  sudo apt install arandr -y
+  # window layout style
+  sudo apt install lxappearance -y
+  # file manager
+  sudo apt install thunar gnome-icon-theme arc-theme -y
+  # dmenu run
+  sudo apt install rofi -y
+  # urxvt terminal
+  # xclip for urxvt 
+  sudo apt install rxvt-unicode rxvt-unicode-256color -y
+  sudo apt install xclip -y
+  # light for laptop fn
+  sudo apt install light -y
+}
+
+install_xresource_conf() {
+  local src_file dest_file
+
+  # for ibus input
+  src_file="${REPO_BASE}/.xprofile"
+  dest_file="${HOME}/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+
+  # for urxvt terminal
+  src_file="${REPO_BASE}/.Xresources"
+  dest_file="${HOME}/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+install_i3wm_conf() {
+  local src_file dest_file
+
+  mkdir -p "${HOME}/.config/i3/"
+
+  src_file="${REPO_BASE}/i3/status.conf"
+  dest_file="${HOME}/.config/i3/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+
+  src_file="${REPO_BASE}/i3/config"
+  dest_file="${HOME}/.config/i3/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+}
+
+main() {
+  echo -e "\n== setup i3wm ==\n"
+  install_required_app
+  install_xresource_conf
+  install_wallpaper
+  install_i3wm_conf
+}
+
+main

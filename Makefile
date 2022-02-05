@@ -27,6 +27,9 @@ setup_gdb:
 setup_zsh:
 	SHELL=/bin/zsh ./setup/setup_zsh
 
+setup_i3wm:
+	./setup/setup_i3wm
+
 test:
 	./test/shell_linter
 
