@@ -34,7 +34,7 @@ font pango:Ubuntu Mono 10
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 #
-bindsym $mod+Shift+x exec i3lock -c 01544A -p default
+bindsym $mod+Shift+x exec i3lock -c 002b36 -p default -f
 
 
 ###############################################################################
