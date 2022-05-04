@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# setup i3wm
+# setup i3wm based on i3-gaps branch
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ..
@@ -18,33 +18,42 @@ install_wallpaper() {
 
 install_required_app() {
   # wallpaper
-  sudo apt install feh -y
+  sudo pacman -S feh --noconfirm
   # monitor settings
-  sudo apt install arandr -y
+  sudo pacman -S arandr --noconfirm
   # window layout style
-  sudo apt install lxappearance -y
+  sudo pacman -S lxappearance --noconfirm
   # file manager
-  sudo apt install thunar gnome-icon-theme arc-theme -y
+  sudo pacman -S caja --noconfirm
   # dmenu run
-  sudo apt install rofi -y
-  # urxvt terminal
-  # xclip for urxvt 
-  sudo apt install rxvt-unicode rxvt-unicode-256color -y
-  sudo apt install xclip -y
+  sudo pacman -S rofi --noconfirm
+  # mate terminal
+  sudo pacman -S mate-terminal --noconfirm
   # light for laptop fn
-  sudo apt install light -y
+  sudo pacman -S light --noconfirm
+  # audio control
+  sudo pacman -S pulseaudio alsa-utils --noconfirm
+  # i3wm related
+  sudo pacman -S i3lock xorg-xmodmap engrampa mate-utils ttf-font-awesome --noconfirm
+  # fcitx input
+  sudo pacman -S fcitx-im fcitx-configtool --noconfirm
 }
 
 install_xresource_conf() {
   local src_file dest_file
 
-  # for ibus input
+  # for fcixt input and system enviroment
   src_file="${REPO_BASE}/.xprofile"
   dest_file="${HOME}/$(basename "${src_file}")"
   mk_link "${src_file}" "${dest_file}"
 
   # for urxvt terminal
   src_file="${REPO_BASE}/.Xresources"
+  dest_file="${HOME}/$(basename "${src_file}")"
+  mk_link "${src_file}" "${dest_file}"
+
+  # for xinitrc for fonts
+  src_file="${REPO_BASE}/.xinitrc"
   dest_file="${HOME}/$(basename "${src_file}")"
   mk_link "${src_file}" "${dest_file}"
 

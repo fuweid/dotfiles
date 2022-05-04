@@ -16,11 +16,9 @@ set $mod Mod4
 #
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu Mono 10
 #
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-# font pango:DejaVu Sans Mono 8
+# More information: https://github.com/romkatv/powerlevel10k#fonts
+font pango:MesloLGS NF Regular 10
 
 
 ###############################################################################
@@ -43,7 +41,9 @@ bindsym $mod+Shift+x exec i3lock -c 002b36 -p default -f
 #
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
+#
+# But I would like to use iwd service and iwctl commandline to handle it. :)
 
 ###############################################################################
 #
@@ -74,8 +74,7 @@ floating_modifier $mod
 #
 # Start a terminal
 #
-# urxvt needs $HOME/.Xresources.
-bindsym $mod+Return exec xrdb ~/.Xresources && urxvt
+bindsym $mod+Return exec mate-terminal --hide-menubar
 
 
 ###############################################################################
@@ -142,10 +141,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 #
 # screenshot with area
-bindsym --release $mod+Print exec gnome-screenshot -a
+bindsym --release $mod+Print exec mate-panel-screenshot -a
 #
 # screenshot whole screen
-bindsym --release $mod+Shift+Print exec gnome-screenshot
+bindsym --release $mod+Shift+Print exec mate-panel-screenshot
 
 
 ###############################################################################
@@ -190,7 +189,7 @@ set $ws2 "2. "
 set $ws3 "3. "
 set $ws4 "4. "
 set $ws5 "5. Zoom"
-set $ws6 "6. 🗄️"
+set $ws6 "6. "
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -199,12 +198,14 @@ set $ws10 "10. "
 # use xprop to get VM_class
 assign [class="^Google-chrome$"] $ws1
 assign [class="Gnome-terminal"] $ws2
+assign [class="Mate-terminal"] $ws2
 assign [class="URxvt"] $ws2
 assign [class="Slack"] $ws3
 assign [class="Code"] $ws4
 assign [class="zoom"] $ws5
 assign [class="Thunar"] $ws6
-assign [class="^(?:(?!Google-chrome|Gnome-terminal|URxvt|Slack|Code|zoom).)*$\r?\n?"] $ws10
+assign [class="Caja"] $ws6
+assign [class="^(?:(?!Google-chrome|Gnome-terminal|Mate-terminal|Slack|Code|zoom).)*$\r?\n?"] $ws10
 #
 # switch to workspace
 # bindsym $mod+1 workspace Terminals
@@ -238,7 +239,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 #
 # It is based on rofi, which need to be installed by `apt install rofi`
 bindsym $mod+d exec rofi -show run -display-run "_>" \
-        -theme "solarized" -font "Ubuntu Mono 20" -lines 5 -bw 2
+        -theme "solarized" -font "Ubuntu Mono 20" -lines 10 -bw 2
 
 
 ###############################################################################
@@ -248,7 +249,7 @@ bindsym $mod+d exec rofi -show run -display-run "_>" \
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:Font Awesome 5 Brands Regular, Font Awesome 5 Brands Regular, Font Awesome 5 Free Solid, Ubuntu Mono:style=Regular 10
+        font pango:Font Awesome 5 Brands Regular, Font Awesome 5 Brands Regular, Font Awesome 5 Free Solid, MesloLGS NF Regular 10
 
         status_command i3status --config $HOME/.config/i3/status.conf
 }
@@ -261,15 +262,12 @@ bar {
 exec --no-startup-id feh --bg-scale $HOME/Pictures/.wallpaper.png
 #
 # Using ibus 
-exec --no-startup-id ibus-daemon -dr
+exec --no-startup-id fcitx
 #
 # Remap Caps_Lock to Control
 exec --no-startup-id xmodmap $HOME/.Xmodmap
 #
-# Start NetworkManager
-exec --no-startup-id systemctl start NetworkManager
-#
-# Use xrandr|arandr to config minitor(apt install arandr)
+# Use xrandr|arandr to config minitor(apt install arandr, pacman -S arandr)
 # arandr can export xrandr commandline :)
 #
-# Use lxappearance to change layout of windows(apt install lxappearance)
+# Use lxappearance to change layout of windows(apt install lxappearance, pacman -S lxappearance)
