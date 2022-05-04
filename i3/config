@@ -202,10 +202,11 @@ assign [class="Mate-terminal"] $ws2
 assign [class="URxvt"] $ws2
 assign [class="Slack"] $ws3
 assign [class="Code"] $ws4
+assign [class="code-oss"] $ws4
 assign [class="zoom"] $ws5
 assign [class="Thunar"] $ws6
 assign [class="Caja"] $ws6
-assign [class="^(?:(?!Google-chrome|Gnome-terminal|Mate-terminal|Slack|Code|zoom).)*$\r?\n?"] $ws10
+assign [class="^(?:(?!Google-chrome|Gnome-terminal|Mate-terminal|Slack|Code|code-oss|zoom).)*$\r?\n?"] $ws10
 #
 # switch to workspace
 # bindsym $mod+1 workspace Terminals
