@@ -36,6 +36,9 @@ setup_golang:
 setup_dockerce:
 	./setup/setup_dockerce
 
+setup_k8s:
+	./setup/setup_k8s
+
 clone_working_projects:
 	./setup/clone_working_projects
 
@@ -51,5 +54,6 @@ test:
 		setup_zsh \
 		setup_golang \
 		setup_dockerce \
+		setup_k8s \
 		clone_working_projects \
 		test
