@@ -13,6 +13,9 @@ source $ZSH/oh-my-zsh.sh
 # use en_US.UTF-8 encoding
 export LANG=en_US.UTF-8
 
+# load fzf helper
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # load pathrc configure
 export PATHRC="$HOME/.pathrc"
 if [[ -f $PATHRC ]]; then
