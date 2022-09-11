@@ -19,7 +19,7 @@ fetch_go_projects() {
   projects=(
     "github.com/containerd/containerd:fuweid/containerd"
     "github.com/kubernetes-sigs/cri-tools:fuweid/cri-tools"
-    "github.com/etcd-io/etcd:fuweid/etcd:go.etcd.io/etcd/v3"
+    "github.com/etcd-io/etcd:fuweid/etcd@go.etcd.io/etcd/v3"
   )
 
   # FIXME(fuweid): support no upstream type
