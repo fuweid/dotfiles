@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# setup docker-ce
+
+set -euo pipefail
+
+install_dockerce() {
+  # Add Docker's official GPG key
+  sudo apt install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+  sudo mkdir -p /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/debian/gpg \
+    | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+  # install docker-ce
+  #
+  # buster should be updated if it is not sid
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian buster stable" \
+    | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+  sudo apt update -y
+  sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+  # add USER to docker group
+  set +e; sudo groupadd docker; set -e
+  sudo usermod -aG docker $USER
+  sudo systemctl restart docker
+}
+
+main() {
+  install_dockerce
+}
+
+main

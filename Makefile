@@ -33,6 +33,9 @@ setup_i3wm:
 setup_golang:
 	./setup/setup_golang
 
+setup_dockerce:
+	./setup/setup_dockerce
+
 clone_working_projects:
 	./setup/clone_working_projects
 
@@ -47,5 +50,6 @@ test:
 		setup_gdb \
 		setup_zsh \
 		setup_golang \
+		setup_dockerce \
 		clone_working_projects \
 		test
