@@ -30,6 +30,12 @@ setup_zsh:
 setup_i3wm:
 	./setup/setup_i3wm
 
+setup_golang:
+	./setup/setup_golang
+
+clone_working_projects:
+	./setup/clone_working_projects
+
 test:
 	./test/shell_linter
 
@@ -40,4 +46,6 @@ test:
 		setup_git \
 		setup_gdb \
 		setup_zsh \
+		setup_golang \
+		clone_working_projects \
 		test
