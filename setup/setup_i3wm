@@ -13,30 +13,72 @@ install_wallpaper() {
 
   src_file="${REPO_BASE}/.wallpaper.png"
   dest_file="${HOME}/Pictures/$(basename "${src_file}")"
+
+  mkdir -p "$HOME/Pictures"
   mk_link "${src_file}" "${dest_file}"
 }
 
 install_required_app() {
   # wallpaper
-  sudo pacman -S feh --noconfirm
+  sudo apt install feh -y
   # monitor settings
-  sudo pacman -S arandr --noconfirm
+  sudo apt install arandr -y
   # window layout style
-  sudo pacman -S lxappearance --noconfirm
+  sudo apt install lxappearance -y
   # file manager
-  sudo pacman -S caja --noconfirm
+  sudo apt install caja -y
   # dmenu run
-  sudo pacman -S rofi --noconfirm
-  # mate terminal
-  sudo pacman -S mate-terminal --noconfirm
+  sudo apt install rofi -y
+  # mate terminal and konsole
+  sudo apt install mate-terminal konsole -y
   # light for laptop fn
-  sudo pacman -S light --noconfirm
+  sudo apt install light -y
   # audio control
-  sudo pacman -S pulseaudio alsa-utils --noconfirm
+  sudo apt install pulseaudio alsa-utils pulseaudio-utils -y
   # i3wm related
-  sudo pacman -S i3lock xorg-xmodmap engrampa mate-utils ttf-font-awesome --noconfirm
+  sudo apt install i3lock engrampa mate-utils fonts-font-awesome -y
   # fcitx input
-  sudo pacman -S fcitx-im fcitx-configtool --noconfirm
+  sudo apt install fcitx fcitx-googlepinyin -y
+  # Chinese fonts
+  sudo apt install ttf-wqy-microhei ttf-wqy-zenhei -y
+  # firmware
+  sudo apt install -y \
+    firmware-iwlwifi \
+    firmware-misc-nonfree \
+    firmware-realtek \
+    firmware-sof-signed
+  # network manager
+  sudo apt install network-manager-gnome -y
+  # bluetools
+  #
+  # NOTE:
+  # 1. update /etc/bluetooth/main.conf with 'ControllerMode = bredr'
+  # 2. update bluetoothd systemd service with the config file
+  sudo apt install blueman -y
+  # devtools
+  sudo apt-get install -y \
+    wget \
+    curl \
+    unzip \
+    zip \
+    tree \
+    tar \
+    silversearcher-ag \
+    jq \
+    zsh \
+    vim \
+    neovim \
+    tmux \
+    git \
+    gcc \
+    cmake \
+    make \
+    lsof \
+    build-essential \
+    libelf-dev \
+    clang \
+    linux-headers-$(uname -r) \
+    gcc-multilib
 }
 
 install_xresource_conf() {
@@ -77,12 +119,34 @@ install_i3wm_conf() {
   mk_link "${src_file}" "${dest_file}"
 }
 
+install_fonts() {
+  local -a rcs
+  local src_file dest_file
+
+  rcs=(
+    "Font Awesome 5 Brands-Regular-400.otf"
+    "Font Awesome 5 Free-Regular-400.otf"
+    "Font Awesome 5 Free-Solid-900.otf"
+    "MesloLGS NF Bold.ttf"
+    "MesloLGS NF Regular.ttf"
+  )
+
+  mkdir -p "$HOME/.fonts"
+
+  for file in "${rcs[@]}"; do
+    src_file="${REPO_BASE}/i3/fonts/${file}"
+    dest_file="${HOME}/.fonts/$(basename "${src_file}")"
+    mk_link "${src_file}" "${dest_file}"
+  done
+}
+
 main() {
   echo -e "\n== setup i3wm ==\n"
   install_required_app
   install_xresource_conf
   install_wallpaper
   install_i3wm_conf
+  install_fonts
 }
 
 main
