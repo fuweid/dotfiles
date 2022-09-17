@@ -78,6 +78,7 @@ install_required_app() {
     libelf-dev \
     clang \
     linux-headers-$(uname -r) \
+    xclip \
     gcc-multilib
 }
 
