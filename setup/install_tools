@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+#
+# Install my tools
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+cd ..
+
+readonly REPO_BASE="$(pwd -P)"
+source "${REPO_BASE}/setup/utils.sh"
+
+install_scripts() {
+  local -a rcs
+  local src_file dest_file prefix_path
+
+  rcs=(
+    "notion"
+  )
+
+  prefix_path="/opt/fuwei/bin"
+
+  mkdir -p "${prefix_path}"
+  for file in "${rcs[@]}"; do
+    src_file="${REPO_BASE}/scripts/${file}"
+    dest_file="${prefix_path}/$(basename "${src_file}")"
+    mk_link "${src_file}" "${dest_file}"
+  done
+}
+
+main() {
+  echo -e "\n==setup my tools==\n"
+  install_scripts
+}
+
+main

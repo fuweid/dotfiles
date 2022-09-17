@@ -42,6 +42,9 @@ setup_k8s:
 clone_working_projects:
 	./setup/clone_working_projects
 
+install_tools:
+	./setup/install_tools
+
 test:
 	./test/shell_linter
 
@@ -56,4 +59,5 @@ test:
 		setup_dockerce \
 		setup_k8s \
 		clone_working_projects \
+		install_tools \
 		test
