@@ -3,3 +3,4 @@
   email = fuweid89@gmail.com
 [core]
   editor = nvim
+  autocrlf = input
