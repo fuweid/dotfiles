@@ -259,7 +259,7 @@ bar {
 # Other settings
 #
 # Using feh to setup wallpaper
-exec --no-startup-id feh --bg-scale $HOME/Pictures/.wallpaper.jpq
+exec --no-startup-id feh --bg-scale $HOME/Pictures/.wallpaper.jpg
 #
 # Using ibus 
 exec --no-startup-id fcitx
