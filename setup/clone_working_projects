@@ -18,8 +18,6 @@ fetch_go_projects() {
   # locate   -> github.com/docker/docker which is used to change the pkg locate
   projects=(
     "github.com/containerd/containerd:fuweid/containerd"
-    "github.com/kubernetes-sigs/cri-tools:fuweid/cri-tools"
-    "github.com/etcd-io/etcd:fuweid/etcd@go.etcd.io/etcd/v3"
   )
 
   # FIXME(fuweid): support no upstream type
