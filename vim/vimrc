@@ -17,7 +17,7 @@ Plug 'scrooloose/syntastic'
 " color palette
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'maxmx03/solarized.nvim'
 
 " explore filesystem and open file/dir
 Plug 'scrooloose/nerdtree'
@@ -239,8 +239,8 @@ let g:airline_theme='base16_google'
 " urxvt doesn't render emoji well
 let g:airline_symbols_ascii=1
 
-" dark background
-set background=dark
+" light background
+set background=light
 
 " altercation/vim-color-solarized
 " use silent to ignore error when install plugins by command line
@@ -379,6 +379,7 @@ let g:syntastic_rust_checkers = ['cargo']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neovim/nvim-lspconfig
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
 lua << EOF
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -396,3 +397,4 @@ end
 
 require'lspconfig'.rust_analyzer.setup{ on_attach = on_attach}
 EOF
+endif
