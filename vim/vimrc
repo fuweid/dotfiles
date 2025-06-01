@@ -17,7 +17,12 @@ Plug 'scrooloose/syntastic'
 " color palette
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'maxmx03/solarized.nvim'
+Plug 'altercation/vim-colors-solarized'
+
+" github copilot integration
+Plug 'github/copilot.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 
 " explore filesystem and open file/dir
 Plug 'scrooloose/nerdtree'
@@ -111,6 +116,9 @@ set incsearch
 
 " enable modeline
 set modeline
+
+" enable clipboard for yanking and pasting
+set clipboard=unnamedplus
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -396,5 +404,8 @@ local on_attach = function(client, bufnr)
 end
 
 require'lspconfig'.rust_analyzer.setup{ on_attach = on_attach}
+
+require("CopilotChat").setup { }
 EOF
 endif
+
