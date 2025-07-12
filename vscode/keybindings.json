@@ -1,0 +1,11 @@
+[
+    {
+        "key": "ctrl+T",
+        "command": "workbench.action.terminal.focus",
+    },
+    {
+        "key": "ctrl+E",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus || explorerViewletVisible || searchViewletVisible "
+    }
+]
