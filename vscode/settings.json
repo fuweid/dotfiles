@@ -9,16 +9,14 @@
     "zenMode.showTabs": "single",
     "zenMode.restore": true,
 
-    "editor.fontFamily": "JetBrains Mono",
-    "editor.fontLigatures": true,
+    "editor.fontFamily": "monospace",
+    "editor.fontSize": 15,
     "editor.wordWrap": "on",
-    
+    "editor.lineHeight": 19,
+
     // Show 80th column to indicate the boundary
     "editor.rulers": [
-        {
-            "column": 80,
-            "color": "#808080" // Changed to grey
-        }
+        {"column": 80, "color": "#5a5a5a20"}, 
     ],
 
     // Enable true color support
@@ -32,6 +30,8 @@
         "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
       }
     },
+    "terminal.integrated.fontFamily": "monospace",
+    "terminal.integrated.fontSize": 15,
     
     // Search configuration
     "search.smartCase": true,
@@ -52,6 +52,7 @@
     "vim.autoindent": true,
     "vim.useCtrlKeys": true,
     "vim.shell": "/bin/zsh",
+    "vim.useSystemClipboard": true,
 
     "vim.visualModeKeyBindings": [
       { "before": ["<"], "commands": ["editor.action.outdentLines"] },
