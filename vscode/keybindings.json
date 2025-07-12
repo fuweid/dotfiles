@@ -6,6 +6,11 @@
     {
         "key": "ctrl+E",
         "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus || explorerViewletVisible || searchViewletVisible "
+        "when": "terminalFocus || explorerViewletVisible || searchViewletVisible"
+    },
+    {
+        "key": "ctrl+B",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletVisible || searchViewletVisible"
     }
 ]
