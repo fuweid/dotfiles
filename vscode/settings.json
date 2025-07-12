@@ -1,0 +1,154 @@
+{
+    "workbench.colorTheme": "Solarized Light",
+    "editor.multiCursorLimit": 22222,
+    "github.copilot.nextEditSuggestions.enabled": true,
+
+    // zenMode
+    "zenMode.centerLayout": false, 
+    "zenMode.hideLineNumbers": false,
+    "zenMode.showTabs": "single",
+    "zenMode.restore": true,
+
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "editor.wordWrap": "on",
+    
+    // Show 80th column to indicate the boundary
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#808080" // Changed to grey
+        }
+    ],
+
+    // Enable true color support
+    "terminal.integrated.gpuAcceleration": "on",
+
+    // Enable 
+    "terminal.integrated.defaultProfile.linux": "tmux-shell",
+    "terminal.integrated.profiles.linux": {
+      "tmux-shell": {
+        "path": "tmux",
+        "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
+      }
+    },
+    
+    // Search configuration
+    "search.smartCase": true,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.git": true,
+        "**/.DS_Store": true
+    },
+    
+    // Enhanced file preview and navigation
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.quickOpen.closeOnFocusLost": false,
+
+    "vim.leader": ",",
+    "vim.hlsearch": true,
+    "vim.autoindent": true,
+    "vim.useCtrlKeys": true,
+    "vim.shell": "/bin/zsh",
+
+    "vim.visualModeKeyBindings": [
+      { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+      { "before": [">"], "commands": ["editor.action.indentLines"] },
+
+      {
+          "before": ["leader", "c"],
+          "commands": ["editor.action.commentLine"],
+          "when": "editorTextFocus && !editorReadonly"
+      }
+    ],
+    
+    "vim.insertModeKeyBindings": [
+        // jj to exit insert mode
+        { "before": ["j", "j"], "after": ["<Esc>"] }
+    ],
+    
+    "vim.normalModeKeyBindingsNonRecursive": [
+      // ,d to stop the highlighting for the 'hlsearch' option
+      { "before": ["leader", "d"], "commands": [":nohl"] },
+      
+      // ,, to switch to last edit buffer
+      {
+        "before": ["leader", "leader"],
+        "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditor"]
+      },
+
+      // ,e to open buffer list
+      {
+        "before": ["leader", "e"],
+        "commands": ["workbench.action.quickOpenPreviousRecentlyUsedEditor"]
+      },
+      
+      // ,s to start global search (equivalent to :Ag!)
+      {
+        "before": ["leader", "s"],
+        // "commands": ["workbench.action.findInFiles"]
+        "commands": [
+          "workbench.action.terminal.focus",
+          {
+            "command": "workbench.action.terminal.sendSequence",
+            "args": {
+              "text": "clear; echo -n \"Search in ${PWD} : \" ; search_term=\"$(read term && echo $term)\"; ag \"$search_term\" | fzf -0 -d ':' --preview 'bat --style=numbers --color=always $(cut -d: -f1 <<< {1}) --highlight-line {2} --no-pager' --preview-window='right:50%' --preview-window +{2}/2 --bind alt-a:select-all,alt-d:deselect-all | awk -F':' '{print $1 \":\" $2}' | xargs -r code -g\n"
+            }
+          }
+        ]
+      },
+      
+      // ,f to start files search (equivalent to :Files)
+      {
+        "before": ["leader", "f"],
+        "commands": ["workbench.action.quickOpen"]
+      },
+      
+      // ,z to close panel/preview (closest equivalent to closing preview window)
+      {
+        "before": ["leader", "z"],
+        "commands": ["workbench.action.closePanel"]
+      },
+      
+      {
+        "before": ["leader", "q"],
+        "commands": ["workbench.action.closeActiveEditor"]
+      },
+
+      // simplify windows navigation
+      {
+        "before": ["<C-h>"],
+        "commands": ["workbench.action.focusLeftGroup"]
+      },
+      {
+        "before": ["<C-j>"],
+        "commands": ["workbench.action.focusBelowGroup"]
+      },
+      {
+        "before": ["<C-k>"],
+        "commands": ["workbench.action.focusAboveGroup"]
+      },
+      {
+        "before": ["<C-l>"],
+        "commands": ["workbench.action.focusRightGroup"]
+      },
+
+      // " ,t to open tree
+      {
+        "before": ["leader", "t"],
+        "commands": ["workbench.view.explorer"],
+      }
+    ],
+
+    "vim.handleKeys": {
+        "<C-p>": false,
+    },
+
+    "extensions.experimental.affinity": {
+      "vscodevim.vim": 1,
+      "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.activityBar.location": "bottom"
+}
