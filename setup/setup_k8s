@@ -5,18 +5,16 @@
 set -euo pipefail
 
 install_k8s() {
-  # Download the Google Cloud public signing key
   sudo mkdir -p /etc/apt/keyrings
-  curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
-    | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
+  curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.35/deb/Release.key \
+    | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
   # Install
-  echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" \
+  echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.35/deb/ /' \
     | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
   sudo apt update -y
   sudo apt-get install -y kubelet kubeadm kubectl
-  sudo apt-mark hold kubelet kubeadm kubectl
 }
 
 main() {
